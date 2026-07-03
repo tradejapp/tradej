@@ -364,6 +364,14 @@ canvas.mc{width:100%;display:block;}
 
 @media(max-width:980px){.pr-grid3{grid-template-columns:1fr;}.pr-card3.featured{transform:none;}}
 
+/* ─── USDT NOTICE ─── */
+.usdt-notice{display:flex;align-items:center;gap:18px;margin-top:36px;background:rgba(34,197,94,0.06);border:1px solid rgba(34,197,94,0.2);border-radius:14px;padding:20px 24px;max-width:900px;margin-left:auto;margin-right:auto;flex-wrap:wrap;}
+.usdt-icon{width:44px;height:44px;border-radius:50%;background:rgba(34,197,94,0.12);border:1px solid rgba(34,197,94,0.3);display:flex;align-items:center;justify-content:center;font-size:1.3rem;font-weight:700;color:var(--green);flex-shrink:0;}
+.usdt-txt{flex:1;font-size:.85rem;color:var(--text2);line-height:1.6;min-width:200px;}
+.usdt-txt strong{color:var(--text);}
+.usdt-btn{display:flex;align-items:center;gap:7px;background:rgba(88,101,242,.15);border:1px solid rgba(88,101,242,.3);color:#a5b4fc;font-weight:700;font-size:.8rem;padding:10px 18px;border-radius:8px;white-space:nowrap;transition:transform .18s,background .18s;flex-shrink:0;}
+.usdt-btn:hover{transform:translateY(-2px);background:rgba(88,101,242,.25);}
+
 /* ─── DOWNLOAD TILES ─── */
 .dl-cta-head{max-width:600px;margin:0 auto 48px;text-align:center;}
 .dl-cta-head .sec-label{margin-bottom:14px;}
@@ -392,7 +400,9 @@ canvas.mc{width:100%;display:block;}
 .soc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;}
 .soc-grid-3{grid-template-columns:repeat(3,1fr);}
 .soc-grid-4{grid-template-columns:repeat(4,1fr);}
-@media(max-width:560px){.soc-grid-4,.soc-grid-3{grid-template-columns:1fr 1fr;}}
+.soc-grid-5{grid-template-columns:repeat(5,1fr);}
+@media(max-width:700px){.soc-grid-5,.soc-grid-4,.soc-grid-3{grid-template-columns:1fr 1fr;}}
+.soc-card.rd:hover{border-color:rgba(255,69,0,.4);}
 .soc-card{background:#0c1220;border:1px solid var(--border);border-radius:12px;padding:16px;display:flex;flex-direction:column;align-items:center;gap:7px;text-align:center;transition:transform .18s,border-color .18s;}
 .soc-card:hover{transform:translateY(-3px);}
 .soc-card.x:hover{border-color:rgba(255,255,255,.22);}
@@ -844,10 +854,19 @@ footer{background:#0c1220;border-top:1px solid var(--border);padding:52px 48px 3
       </div>
 
     </div>
+
+    <!-- USDT payment notice -->
+    <div class="usdt-notice fu">
+      <div class="usdt-icon">₮</div>
+      <div class="usdt-txt">
+        <strong>Payments accepted in USDT</strong>
+        All subscriptions and lifetime deals are paid in <strong>USDT (Tether)</strong> — fast, borderless, and no bank fees. Contact us via Discord or Twitter to get your payment address and activate your plan.
+      </div>
+      <a href="https://discord.gg/UUEGpjQf" target="_blank" rel="noopener" class="usdt-btn">💬 Pay via Discord</a>
+    </div>
+
   </div>
 </section>
-
-<!-- DOWNLOAD -->
 <section class="dl-cta" id="download">
   <div class="dl-cta-head fu">
     <div class="sec-label">Get Started</div>
@@ -916,11 +935,12 @@ footer{background:#0c1220;border-top:1px solid var(--border);padding:52px 48px 3
       <h2 class="sec-h fu" style="max-width:360px;">Find us where<br>traders are</h2>
       <p class="sec-p fu" style="margin-bottom:0;">Setups, score comparisons, live Q&amp;As, and early access to new features.</p>
     </div>
-    <div class="soc-grid soc-grid-4 fu">
+    <div class="soc-grid soc-grid-5 fu">
       <a href="https://twitter.com/TJTrade_Journal" target="_blank" rel="noopener" class="soc-card x"><div class="soc-ico">𝕏</div><div class="soc-name">Twitter / X</div><div class="soc-handle">@TJTrade_Journal</div></a>
       <a href="https://www.tiktok.com/@tradej_the_trade_journal" target="_blank" rel="noopener" class="soc-card tt"><div class="soc-ico">🎵</div><div class="soc-name">TikTok</div><div class="soc-handle">@tradej_the_trade_journal</div></a>
       <a href="https://youtube.com/@TJ_TradeJ" target="_blank" rel="noopener" class="soc-card yt"><div class="soc-ico">▶️</div><div class="soc-name">YouTube</div><div class="soc-handle">@TJ_TradeJ</div></a>
       <a href="https://discord.gg/UUEGpjQf" target="_blank" rel="noopener" class="soc-card dc"><div class="soc-ico">💬</div><div class="soc-name">Discord</div><div class="soc-handle">Join the server</div></a>
+      <a href="https://reddit.com/user/Friendly_Proposal848" target="_blank" rel="noopener" class="soc-card rd"><div class="soc-ico">🤖</div><div class="soc-name">Reddit</div><div class="soc-handle">u/Friendly_Proposal848</div></a>
     </div>
   </div>
 </section>
@@ -933,7 +953,7 @@ footer{background:#0c1220;border-top:1px solid var(--border);padding:52px 48px 3
       <p class="fb-p">MT4/MT5 Trading Journal with automatic sync, AI coaching, and the TradeJ Score — available on Desktop, iOS, and Android.</p>
     </div>
     <div class="fc"><h4>Product</h4><ul><li><a href="#features">Features</a></li><li><a href="#specs">Requirements</a></li><li><a href="#pricing">Pricing</a></li><li><a href="#download">Download</a></li></ul></div>
-    <div class="fc"><h4>Community</h4><ul><li><a href="https://discord.gg/UUEGpjQf" target="_blank" rel="noopener">Discord</a></li><li><a href="https://twitter.com/TJTrade_Journal" target="_blank" rel="noopener">Twitter / X</a></li><li><a href="https://www.tiktok.com/@tradej_the_trade_journal" target="_blank" rel="noopener">TikTok</a></li><li><a href="https://youtube.com/@TJ_TradeJ" target="_blank" rel="noopener">YouTube</a></li></ul></div>
+    <div class="fc"><h4>Community</h4><ul><li><a href="https://discord.gg/UUEGpjQf" target="_blank" rel="noopener">Discord</a></li><li><a href="https://twitter.com/TJTrade_Journal" target="_blank" rel="noopener">Twitter / X</a></li><li><a href="https://www.tiktok.com/@tradej_the_trade_journal" target="_blank" rel="noopener">TikTok</a></li><li><a href="https://youtube.com/@TJ_TradeJ" target="_blank" rel="noopener">YouTube</a></li><li><a href="https://reddit.com/user/Friendly_Proposal848" target="_blank" rel="noopener">Reddit</a></li></ul></div>
     <div class="fc"><h4>Support</h4><ul><li><a href="#">Documentation</a></li><li><a href="#">EA Setup Guide</a></li><li><a href="#">Contact Us</a></li><li><a href="#">Privacy Policy</a></li><li><a href="#">Terms of Service</a></li></ul></div>
   </div>
   <div class="footer-bot">

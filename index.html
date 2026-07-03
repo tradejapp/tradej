@@ -42,7 +42,7 @@ nav {
   backdrop-filter:blur(24px);
   border-bottom:1px solid var(--border);
 }
-.nav-l{display:flex;align-items:center;gap:10px;}
+.nav-l{display:flex;align-items:center;gap:10px;cursor:pointer;}
 .nav-l img{width:30px;height:30px;border-radius:7px;}
 .nav-l .name{font-weight:700;font-size:1.05rem;letter-spacing:-.01em;}
 .nav-l .badge{font-size:.62rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--teal);background:var(--teal-d);border:1px solid rgba(0,212,168,.2);padding:2px 7px;border-radius:4px;}
@@ -430,12 +430,11 @@ footer{background:#0c1220;border-top:1px solid var(--border);padding:52px 48px 3
 
 <!-- NAV -->
 <nav>
-  <div class="nav-l">
+  <a href="#" class="nav-l" style="text-decoration:none;" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;">
     <img id="nav-ico" alt="TradeJ">
     <span class="name">TradeJ</span>
     <span class="badge">Desktop</span>
-  </div>
-  <div class="nav-c">
+  </a>
     <a href="#features">Features</a>
     <a href="#how">How it works</a>
     <a href="#specs">Requirements</a>

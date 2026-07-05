@@ -24,7 +24,8 @@
   --sans:   'Space Grotesk',sans-serif;
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
-html{scroll-behavior:smooth;}
+html,body{max-width:100%;overflow-x:hidden;}
+html{scroll-behavior:smooth;overflow-x:hidden;}
 body{background:var(--bg);color:var(--text);font-family:var(--sans);overflow-x:hidden;line-height:1.6;}
 a{color:inherit;text-decoration:none;}
 
@@ -84,7 +85,7 @@ nav {
 .hero-trust .sep{width:3px;height:3px;border-radius:50%;background:var(--text3);}
 
 /* ─── MOCKUP SHELL ─── */
-.mockup-wrap{padding:0 32px 80px;display:flex;justify-content:center;}
+.mockup-wrap{padding:0 32px 80px;display:flex;justify-content:center;overflow:hidden;}
 .app-shell{
   width:100%;max-width:1180px;
   background:#0d1117;
@@ -396,11 +397,11 @@ canvas.mc{width:100%;display:block;}
 
 /* ─── SOCIAL ─── */
 .social{padding:80px 48px;background:var(--bg);border-top:1px solid var(--border);}
-.social-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;}
-.soc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;}
+.social-inner{max-width:1100px;margin:0 auto;display:flex;flex-direction:column;gap:40px;align-items:flex-start;}
+.soc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;width:100%;}
 .soc-grid-3{grid-template-columns:repeat(3,1fr);}
 .soc-grid-4{grid-template-columns:repeat(4,1fr);}
-.soc-grid-5{grid-template-columns:repeat(5,1fr);}
+.soc-grid-5{grid-template-columns:repeat(5,1fr);width:100%;max-width:900px;}
 @media(max-width:700px){.soc-grid-5,.soc-grid-4,.soc-grid-3{grid-template-columns:1fr 1fr;}}
 .soc-card.rd:hover{border-color:rgba(255,69,0,.4);}
 .soc-card{background:#0c1220;border:1px solid var(--border);border-radius:12px;padding:16px;display:flex;flex-direction:column;align-items:center;gap:7px;text-align:center;transition:transform .18s,border-color .18s;}
@@ -418,6 +419,8 @@ canvas.mc{width:100%;display:block;}
 /* ─── FOOTER ─── */
 footer{background:#0c1220;border-top:1px solid var(--border);padding:52px 48px 30px;}
 .footer-top{display:grid;grid-template-columns:2.5fr 1fr 1fr 1fr;gap:48px;max-width:1100px;margin:0 auto 40px;}
+@media(max-width:860px){.footer-top{grid-template-columns:1fr 1fr;gap:28px;}}
+@media(max-width:560px){.footer-top{grid-template-columns:1fr;}}
 .fb-logo{display:flex;align-items:center;gap:10px;margin-bottom:12px;}
 .fb-logo img{width:34px;height:34px;border-radius:8px;}
 .fb-logo span{font-weight:700;font-size:1rem;}
@@ -862,7 +865,6 @@ footer{background:#0c1220;border-top:1px solid var(--border);padding:52px 48px 3
         <strong>Payments accepted in USDT</strong>
         All subscriptions and lifetime deals are paid in <strong>USDT (Tether)</strong> — fast, borderless, and no bank fees. Contact us via Discord or Twitter to get your payment address and activate your plan.
       </div>
-      <a href="https://discord.gg/UUEGpjQf" target="_blank" rel="noopener" class="usdt-btn">💬 Pay via Discord</a>
     </div>
 
   </div>

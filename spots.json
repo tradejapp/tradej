@@ -1,0 +1,4 @@
+{
+  "sold": 0,
+  "_note": "lifetime sold count. price=49.99+floor(sold/50)*10, lifetime closes at 500"
+}

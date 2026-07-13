@@ -365,6 +365,15 @@ canvas.mc{width:100%;display:block;}
 
 @media(max-width:980px){.pr-grid3{grid-template-columns:1fr;}.pr-card3.featured{transform:none;}}
 
+/* ─── LAUNCH PROMO BANNER ─── */
+.promo-banner{max-width:760px;margin:14px auto 24px;text-align:center;padding:12px 22px;border-radius:12px;background:rgba(245,158,11,0.08);border:1px solid rgba(245,158,11,0.35);color:var(--text2);font-size:.85rem;line-height:1.55;}
+.promo-banner strong{color:#fbbf24;}
+
+/* ─── HERO OFFER PILL ─── */
+.hero-offer{display:inline-flex;align-items:center;gap:8px;margin:18px auto 4px;padding:10px 20px;border-radius:999px;background:rgba(245,158,11,0.08);border:1px solid rgba(245,158,11,0.35);color:var(--text2);font-size:.82rem;font-weight:600;transition:transform .18s,background .18s;}
+.hero-offer strong{color:#fbbf24;}
+.hero-offer:hover{transform:translateY(-2px);background:rgba(245,158,11,0.14);}
+
 /* ─── USDT NOTICE ─── */
 .usdt-notice{display:flex;align-items:center;gap:18px;margin-top:36px;background:rgba(34,197,94,0.06);border:1px solid rgba(34,197,94,0.2);border-radius:14px;padding:20px 24px;max-width:900px;margin-left:auto;margin-right:auto;flex-wrap:wrap;}
 .usdt-icon{width:44px;height:44px;border-radius:50%;background:rgba(34,197,94,0.12);border:1px solid rgba(34,197,94,0.3);display:flex;align-items:center;justify-content:center;font-size:1.3rem;font-weight:700;color:var(--green);flex-shrink:0;}
@@ -465,7 +474,7 @@ footer{background:#0c1220;border-top:1px solid var(--border);padding:52px 48px 3
   <div class="hero-grid"></div>
   <div class="hero-glow"></div>
   <div class="hero-inner">
-    <div class="hero-tag"><span class="pulse"></span>Native Windows &amp; Mac — MT4/MT5 Journal + AI Coach</div>
+    <div class="hero-tag"><span class="pulse"></span>MT4/MT5 Journal + AI Coach + EA Generator — Native Windows App</div>
     <h1>The trading journal<br>built for your <em>desktop.</em></h1>
     <p class="hero-sub">TradeJ auto-syncs every MT4/MT5 trade the moment it closes. Equity curve, win rate, TradeJ Score, AI Coach — all in a native app running beside your terminal.</p>
     <div class="dl-row">
@@ -494,8 +503,9 @@ footer{background:#0c1220;border-top:1px solid var(--border);padding:52px 48px 3
         </div>
       </a>
     </div>
+    <a href="#pricing" class="hero-offer">🔥 Download free → upgrade to Lifetime for <strong class="lt-price-live">$49.99</strong> · <strong><span class="spots-live">50</span> spots left</strong></a>
     <div class="hero-trust">
-      <span>✓ Free to download</span><span class="sep"></span>
+      <span>✓ Free download · 7-day Pro trial</span><span class="sep"></span>
       <span>✓ No browser needed</span><span class="sep"></span>
       <span>✓ Syncs with mobile app</span><span class="sep"></span>
       <span>✓ Works offline</span>
@@ -685,6 +695,12 @@ footer{background:#0c1220;border-top:1px solid var(--border);padding:52px 48px 3
     <p class="sec-p fu">A real native app that runs alongside your MT4/MT5 terminal — not a browser tab.</p>
     <div class="feat-grid fu">
       <div class="feat-c">
+        <div class="feat-ic">🧬</div>
+        <div class="feat-t">EA Generator</div>
+        <div class="feat-d">Describe your strategy in plain English and TradeJ's AI writes a ready-to-attach MT4/MT5 Expert Advisor for it — entries, exits, and risk rules included. Test, tweak, re-generate.</div>
+        <div class="feat-tag">AI-powered</div>
+      </div>
+      <div class="feat-c">
         <div class="feat-ic">⚡</div>
         <div class="feat-t">Live MT4/MT5 Bridge</div>
         <div class="feat-d">A lightweight EA connects directly to your terminal. Every trade syncs in under a second — no imports, no copy-paste, ever.</div>
@@ -772,6 +788,7 @@ footer{background:#0c1220;border-top:1px solid var(--border);padding:52px 48px 3
     <div class="sec-label fu" style="text-align:center;">Pricing</div>
     <h2 class="sec-h fu" style="text-align:center;margin-left:auto;margin-right:auto;">Start free. Upgrade when ready.</h2>
     <p class="sec-p fu" style="margin:0 auto 8px;text-align:center;">Every new account starts with a 7-day free trial of Pro — no card required.</p>
+    <div class="promo-banner fu">🎉 <strong>Launch Promotion</strong> — all prices are limited-time launch pricing. Lifetime Early Bird: <strong><span id="spots-left">50</span> spots left at <span class="lt-price-live">$49.99</span></strong>.</div>
 
     <div class="pr-grid3 fu">
 
@@ -827,16 +844,16 @@ footer{background:#0c1220;border-top:1px solid var(--border);padding:52px 48px 3
         <a href="#download" class="pr-btn3 ai">Add AI Coach ↗</a>
         <div class="pr-toggle">
           <a href="#download" class="pr-toggle-btn">Monthly<br><strong>$14.99</strong></a>
-          <a href="#download" class="pr-toggle-btn active">Annual<span class="save-badge">Save 35%</span><br><strong>$39</strong></a>
+          <a href="#download" class="pr-toggle-btn active">Annual<span class="save-badge">Save 72%</span><br><strong>$49.99</strong></a>
         </div>
       </div>
 
       <!-- LIFETIME -->
       <div class="pr-card3">
-        <div class="pr-ribbon3 early">Early Bird · 200 spots</div>
+        <div class="pr-ribbon3 early">Early Bird · <span class="spots-live">50</span> spots left</div>
         <div class="pr-card3-hdr">
           <div class="pr-name3">Lifetime</div>
-          <div class="pr-price3">$49.99<span class="strike">$79.99</span></div>
+          <div class="pr-price3"><span class="lt-price-live">$49.99</span></div>
           <div class="pr-price3-sub">pay once · own forever</div>
         </div>
         <ul class="pr-feats3">
@@ -853,7 +870,7 @@ footer{background:#0c1220;border-top:1px solid var(--border);padding:52px 48px 3
         <div class="lifetime-note">Lifetime app: $49 + AI add-on: $11.99/yr</div>
         <label class="lifetime-check"><input type="checkbox" checked disabled> Include AI add-on with lifetime deal</label>
         <a href="#download" class="pr-btn3 ai">Add AI Coach ↗</a>
-        <a href="#download" class="pr-btn3 gold">Get Lifetime Deal ↗</a>
+        <a href="#download" class="pr-btn3 gold">Get Lifetime Deal — <span class="lt-price-live">$49.99</span> ↗</a>
       </div>
 
     </div>
@@ -862,9 +879,10 @@ footer{background:#0c1220;border-top:1px solid var(--border);padding:52px 48px 3
     <div class="usdt-notice fu">
       <div class="usdt-icon">₮</div>
       <div class="usdt-txt">
-        <strong>Payments accepted in USDT</strong>
-        All subscriptions and lifetime deals are paid in <strong>USDT (Tether)</strong> — fast, borderless, and no bank fees. Contact us via Discord or Twitter to get your payment address and activate your plan.
+        <strong>How to upgrade</strong>
+        Plans are paid in <strong>USDT (Tether)</strong> — fast, borderless, no bank fees. Download TradeJ free, then upgrade directly inside the app: open the upgrade page and follow the payment instructions. Your plan activates as soon as payment is confirmed — and your 7-day Pro trial runs the whole time.
       </div>
+      <a href="#download" class="usdt-btn">⬇ Download &amp; upgrade in-app</a>
     </div>
 
   </div>
@@ -1068,6 +1086,31 @@ window.addEventListener('scroll',()=>{
     }
   });
 },{passive:true});
+</script>
+<script>
+/* Lifetime ladder — price rises $10 per 50 sold, discontinued at 500. Reads spots.json */
+(function(){
+  var BATCH=50, TOTAL=500, BASE=49.99, STEP=10;
+  fetch('spots.json?t=' + Date.now())
+    .then(function(r){ return r.json(); })
+    .then(function(d){
+      var sold = Math.max(0, d.sold||0);
+      var q = function(s){ return document.querySelectorAll(s); };
+      if(sold >= TOTAL){
+        q('.pr-ribbon3.early').forEach(function(el){ el.textContent='Lifetime — SOLD OUT'; });
+        q('.spots-live, #spots-left').forEach(function(el){ el.textContent='0'; });
+        q('.lt-price-live').forEach(function(el){ el.textContent='Sold out'; });
+        q('.hero-offer').forEach(function(el){ el.style.display='none'; });
+        return;
+      }
+      var batch = Math.floor(sold/BATCH);
+      var price = (BASE + batch*STEP).toFixed(2);
+      var left  = BATCH - (sold % BATCH);
+      q('.spots-live, #spots-left').forEach(function(el){ el.textContent = left; });
+      q('.lt-price-live').forEach(function(el){ el.textContent = '$'+price; });
+    })
+    .catch(function(){ /* spots.json missing — defaults stay */ });
+})();
 </script>
 </body>
 </html>

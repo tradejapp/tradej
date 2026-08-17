@@ -449,7 +449,47 @@ footer{background:#0c1220;border-top:1px solid var(--border);padding:52px 48px 3
 /* ─── FADE UP ─── */
 .fu{opacity:0;transform:translateY(22px);transition:opacity .6s,transform .6s;}
 .fu.vis{opacity:1;transform:translateY(0);}
-@media(prefers-reduced-motion:reduce){.fu{opacity:1;transform:none;}}
+/* ─── HONESTY STREAK ─── */
+.streak{padding:120px 48px;background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border);}
+.streak-max{max-width:920px;margin:0 auto;}
+.streak-grid-wrap{margin:44px 0 18px;}
+.streak-days{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;}
+.streak-day{width:60px;height:74px;border-radius:9px;background:var(--bg3);border:1px solid var(--border);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;position:relative;overflow:hidden;}
+.streak-day .sd-l{font-family:var(--mono);font-size:.62rem;letter-spacing:.06em;color:var(--text3);text-transform:uppercase;z-index:1;}
+.streak-day .sd-m{font-family:var(--mono);font-size:1rem;font-weight:700;z-index:1;opacity:0;color:var(--text3);}
+.streak-day .sd-f{position:absolute;inset:0;opacity:0;transition:opacity .35s ease;}
+.streak-day.win .sd-f{background:var(--teal-d);border-top:2px solid var(--teal);}
+.streak-day.win .sd-m{color:var(--teal);}
+.streak-day.loss .sd-f{background:rgba(248,113,113,.12);border-top:2px solid #F87171;}
+.streak-day.loss .sd-m{color:#F87171;}
+.streak-caption{font-family:var(--mono);font-size:.78rem;color:var(--text2);text-align:center;margin-bottom:40px;}
+.streak-caption b{color:var(--text);}
+.streak-chips{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-bottom:56px;}
+.streak-chip{font-family:var(--mono);font-size:.74rem;color:var(--text2);background:var(--bg3);border:1px solid var(--border);border-radius:999px;padding:8px 15px;}
+.streak-chip b{color:var(--text);}
+.streak-prizes{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;border:1px solid var(--border);border-radius:14px;overflow:hidden;margin-bottom:56px;}
+.streak-prize{background:var(--bg3);padding:22px;text-align:center;}
+.streak-prize .sp-place{font-family:var(--mono);font-size:.68rem;letter-spacing:.08em;text-transform:uppercase;color:var(--text3);margin-bottom:8px;}
+.streak-prize .sp-key{font-family:var(--mono);font-weight:700;font-size:1rem;color:var(--teal);}
+.streak-form{background:var(--bg3);border:1px solid var(--border);border-radius:14px;padding:36px;}
+.streak-form .sf-lede{font-size:.9rem;color:var(--text2);line-height:1.7;margin-bottom:26px;}
+.streak-form .sf-lede b{color:var(--text);}
+.sf-field{margin-bottom:18px;}
+.sf-field label{display:block;font-size:.82rem;font-weight:600;margin-bottom:7px;color:var(--text);}
+.sf-field label .opt{color:var(--text3);font-weight:400;}
+.sf-hint{font-size:.76rem;color:var(--text3);margin-top:6px;}
+.sf-field input,.sf-field select,.sf-field textarea{width:100%;background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:11px 13px;color:var(--text);font-family:var(--sans);font-size:.9rem;outline:none;transition:border-color .15s ease;}
+.sf-field textarea{resize:vertical;min-height:70px;}
+.sf-field input:focus,.sf-field select:focus,.sf-field textarea:focus{border-color:var(--teal);}
+.sf-field select{appearance:none;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='14' height='9'><path d='M1 1l6 6 6-6' stroke='%238BA3C7' stroke-width='1.6' fill='none'/></svg>");background-repeat:no-repeat;background-position:right 13px center;padding-right:34px;}
+.sf-submit{width:100%;background:var(--grad);color:#000;border:none;border-radius:9px;padding:13px 20px;font-family:var(--sans);font-weight:700;font-size:.92rem;cursor:pointer;margin-top:8px;transition:opacity .18s,transform .18s;}
+.sf-submit:hover{opacity:.9;transform:translateY(-1px);}
+.sf-submit:disabled{opacity:.5;cursor:not-allowed;transform:none;}
+.sf-status{margin-top:14px;font-size:.82rem;padding:11px 14px;border-radius:8px;display:none;}
+.sf-status.show{display:block;}
+.sf-status.ok{background:var(--teal-d);border:1px solid rgba(0,212,168,.3);color:var(--teal);}
+.sf-status.err{background:rgba(248,113,113,.12);border:1px solid rgba(248,113,113,.35);color:#F87171;}
+@media(max-width:640px){.streak-prizes{grid-template-columns:1fr;}.streak{padding:80px 24px;}.streak-form{padding:24px;}}
 </style>
 </head>
 <body>
@@ -464,6 +504,7 @@ footer{background:#0c1220;border-top:1px solid var(--border);padding:52px 48px 3
     <a href="#features">Features</a>
     <a href="#how">How it works</a>
     <a href="#specs">Requirements</a>
+    <a href="#streak">Streak</a>
     <a href="#pricing">Pricing</a>
     <a href="#social">Community</a>
   </div>
@@ -507,10 +548,10 @@ footer{background:#0c1220;border-top:1px solid var(--border);padding:52px 48px 3
         </div>
       </a>
     </div>
-    <a href="#pricing" class="hero-offer">🔥 Import one statement free → upgrade to Lifetime for <strong class="lt-price-live">$49.99</strong> · <strong><span class="spots-live">50</span> spots left</strong></a>
+    <a href="#pricing" class="hero-offer">🔥 Download free → upgrade to Lifetime for <strong class="lt-price-live">$49.99</strong> · <strong><span class="spots-live">50</span> spots left</strong></a>
     <div class="hero-trust">
       <span>✓ Free download · 7-day Pro trial</span><span class="sep"></span>
-      <span>✓ No card required</span><span class="sep"></span>
+      <span>✓ No browser needed</span><span class="sep"></span>
       <span>✓ Syncs with mobile app</span><span class="sep"></span>
       <span>✓ Works offline</span>
     </div>
@@ -750,10 +791,10 @@ footer{background:#0c1220;border-top:1px solid var(--border);padding:52px 48px 3
     <div class="sec-label fu">Setup in 5 minutes</div>
     <h2 class="sec-h fu">From install to first insight</h2>
     <div class="steps fu">
-      <div class="step"><div class="step-n">01</div><div class="step-t">Download &amp; Import</div><div class="step-d">Run the installer. Import a statement file to start free — or attach the bridge EA for live auto-sync on Pro.</div></div>
-      <div class="step"><div class="step-n">02</div><div class="step-t">Your Score Appears</div><div class="step-d">Your TradeJ Score loads immediately — discipline rated across four pillars. Free shows the number; Pro shows why.</div></div>
-      <div class="step"><div class="step-n">03</div><div class="step-t">Trades Auto-Log</div><div class="step-d">Every open, close, and modification syncs instantly on Pro. Nothing to enter manually.</div></div>
-      <div class="step"><div class="step-n">04</div><div class="step-t">Ask the AI Coach</div><div class="step-d">Pro unlocks the AI Coach — it reads your actual trade history and names the one thing to fix.</div></div>
+      <div class="step"><div class="step-n">01</div><div class="step-t">Download &amp; Install</div><div class="step-d">Run the installer. No dependencies, no admin rights required on Windows or Mac.</div></div>
+      <div class="step"><div class="step-n">02</div><div class="step-t">Attach the EA</div><div class="step-d">TradeJ drops a tiny bridge EA into MT4/MT5. Drag onto any chart — that's it.</div></div>
+      <div class="step"><div class="step-n">03</div><div class="step-t">Trades Auto-Log</div><div class="step-d">Every open, close, and modification syncs instantly. Nothing to enter manually.</div></div>
+      <div class="step"><div class="step-n">04</div><div class="step-t">See Your Score</div><div class="step-d">Your TradeJ Score updates in real time. Drill into any metric to see what's driving it.</div></div>
     </div>
   </div>
 </section>
@@ -786,12 +827,87 @@ footer{background:#0c1220;border-top:1px solid var(--border);padding:52px 48px 3
   </div>
 </section>
 
+<!-- HONESTY STREAK -->
+<section class="streak" id="streak">
+  <div class="streak-max">
+    <div class="sec-label fu" style="text-align:center;">Community Challenge</div>
+    <h2 class="sec-h fu" style="text-align:center;margin-left:auto;margin-right:auto;">The Honesty Streak</h2>
+    <p class="sec-p fu" style="margin:0 auto;text-align:center;">Log every trade for 7 straight days — wins and losses both. We're not judging the highest score. We're judging who actually showed up.</p>
+
+    <div class="streak-grid-wrap fu">
+      <div class="streak-days" id="streakGrid" aria-hidden="true">
+        <div class="streak-day" data-state="win"><span class="sd-f"></span><span class="sd-l">D1</span><span class="sd-m">W</span></div>
+        <div class="streak-day" data-state="win"><span class="sd-f"></span><span class="sd-l">D2</span><span class="sd-m">W</span></div>
+        <div class="streak-day" data-state="loss"><span class="sd-f"></span><span class="sd-l">D3</span><span class="sd-m">L</span></div>
+        <div class="streak-day" data-state="win"><span class="sd-f"></span><span class="sd-l">D4</span><span class="sd-m">W</span></div>
+        <div class="streak-day" data-state="loss"><span class="sd-f"></span><span class="sd-l">D5</span><span class="sd-m">L</span></div>
+        <div class="streak-day" data-state="win"><span class="sd-f"></span><span class="sd-l">D6</span><span class="sd-m">W</span></div>
+        <div class="streak-day" data-state="win"><span class="sd-f"></span><span class="sd-l">D7</span><span class="sd-m">W</span></div>
+      </div>
+    </div>
+    <p class="streak-caption fu">A losing day still counts. <b>Skipping a day is the only way to lose this.</b></p>
+
+    <div class="streak-chips fu">
+      <div class="streak-chip"><b>No purchase</b> required to enter</div>
+      <div class="streak-chip">Judged on <b>streak</b>, not score</div>
+      <div class="streak-chip">Ties broken by <b>trade count</b>, never profit</div>
+    </div>
+
+    <div class="streak-prizes fu">
+      <div class="streak-prize"><div class="sp-place">1st place</div><div class="sp-key">1 month Pro</div></div>
+      <div class="streak-prize"><div class="sp-place">2nd place</div><div class="sp-key">1 month Pro</div></div>
+      <div class="streak-prize"><div class="sp-place">3rd place</div><div class="sp-key">1 month Pro</div></div>
+    </div>
+
+    <div class="streak-form fu">
+      <p class="sf-lede">Post your Day-7 <b>Dashboard</b> and <b>Calendar</b> screenshots on Forex Factory, a Facebook trading group, X, or TikTok, tagged <b>#TradeJStreak</b>. Then submit the link to that post below — one entry, once, at the end of your streak. Everyone who completes all 7 days gets the in-app 7-Day Streak badge, regardless of rank.</p>
+
+      <form id="streakEntryForm" novalidate>
+        <div class="sf-field">
+          <label for="se-name">Name or trading handle</label>
+          <input type="text" id="se-name" name="name" required autocomplete="name">
+        </div>
+        <div class="sf-field">
+          <label for="se-email">Email <span class="opt">(for prize contact only, never posted publicly)</span></label>
+          <input type="email" id="se-email" name="email" required autocomplete="email">
+        </div>
+        <div class="sf-field">
+          <label for="se-platform">Where you posted</label>
+          <select id="se-platform" name="platform" required>
+            <option value="" disabled selected>Choose one</option>
+            <option value="forex_factory">Forex Factory</option>
+            <option value="facebook">Facebook group</option>
+            <option value="x">X (Twitter)</option>
+            <option value="tiktok">TikTok</option>
+          </select>
+        </div>
+        <div class="sf-field">
+          <label for="se-posturl">Link to your Day-7 post</label>
+          <input type="url" id="se-posturl" name="postUrl" placeholder="https://" required>
+          <p class="sf-hint">Must show both screenshots — Dashboard and Calendar — from Day 7.</p>
+        </div>
+        <div class="sf-field">
+          <label for="se-tradecount">Total trades logged across the week</label>
+          <input type="text" inputmode="numeric" pattern="[0-9]*" id="se-tradecount" name="tradeCount" placeholder="e.g. 14" required>
+          <p class="sf-hint">Used only as a tiebreaker if multiple entrants complete a full 7-day streak — never used to judge the win.</p>
+        </div>
+        <div class="sf-field">
+          <label for="se-note">Anything else <span class="opt">(optional)</span></label>
+          <textarea id="se-note" name="note" placeholder="Notes for the judges, if any"></textarea>
+        </div>
+        <button type="submit" class="sf-submit" id="streakSubmitBtn">Submit entry</button>
+        <div class="sf-status" id="streakStatus" role="status"></div>
+      </form>
+    </div>
+  </div>
+</section>
+
 <!-- PRICING / SUBSCRIPTION -->
 <section class="cl" id="pricing">
   <div class="pr-max3">
     <div class="sec-label fu" style="text-align:center;">Pricing</div>
-    <h2 class="sec-h fu" style="text-align:center;margin-left:auto;margin-right:auto;">Free tells you the number. Pro tells you why.</h2>
-    <p class="sec-p fu" style="margin:0 auto 8px;text-align:center;">Every new account starts with a 7-day trial — score breakdown, all analytics and multi-account unlocked. No card required.</p>
+    <h2 class="sec-h fu" style="text-align:center;margin-left:auto;margin-right:auto;">Start free. Upgrade when ready.</h2>
+    <p class="sec-p fu" style="margin:0 auto 8px;text-align:center;">Every new account starts with a 7-day free trial of Pro — no card required.</p>
     <div class="promo-banner fu">🎉 <strong>Launch Promotion</strong> — all prices are limited-time launch pricing. Lifetime Early Bird: <strong><span id="spots-left">50</span> spots left at <span class="lt-price-live">$49.99</span></strong>.</div>
 
     <div class="pr-grid3 fu">
@@ -806,14 +922,11 @@ footer{background:#0c1220;border-top:1px solid var(--border);padding:52px 48px 3
           <li class="yes">Dashboard</li>
           <li class="yes">Trade Log</li>
           <li class="yes">Trade Summary</li>
-          <li class="yes">Import statement</li>
-          <li class="yes">Calendar <span style="font-size:.78em;opacity:.7">(daily P/L)</span></li>
-          <li class="yes">TradeJ Score <span style="font-size:.78em;opacity:.7">(number + verdict)</span></li>
+          <li class="yes">MT4/MT5 Connect</li>
           <li class="yes">1 account</li>
-          <li class="no">Score breakdown — why it's that number</li>
-          <li class="no">Calendar / Sessions analysis</li>
-          <li class="no">MT4/MT5 Connect</li>
-          <li class="no">Strategy &amp; Mistakes Tracker</li>
+          <li class="no">Strategy Tracker</li>
+          <li class="no">TradeJ Score</li>
+          <li class="no">Calendar &amp; Hold Time</li>
           <li class="no">Kelly Calculator</li>
           <li class="no">Claude AI Coach</li>
           <li class="no">EA Generator</li>
@@ -838,11 +951,10 @@ footer{background:#0c1220;border-top:1px solid var(--border);padding:52px 48px 3
         </div>
         <ul class="pr-feats3">
           <li class="yes">Everything in Free</li>
-          <li class="yes"><strong>Score breakdown</strong> — why it's that number</li>
-          <li class="yes">Calendar / Sessions / Hold Time analysis</li>
-          <li class="yes">MT4/MT5 Connect <span style="font-size:.78em;opacity:.7">(live auto-import)</span></li>
           <li class="yes">Strategy Tracker</li>
+          <li class="yes">TradeJ Score</li>
           <li class="yes">Mistakes Tracker</li>
+          <li class="yes">Calendar + Hold Time</li>
           <li class="yes">Kelly Calculator</li>
           <li class="yes">Unlimited accounts</li>
           <li class="yes">1 EA generation/mo</li>
@@ -957,9 +1069,6 @@ footer{background:#0c1220;border-top:1px solid var(--border);padding:52px 48px 3
 </section>
 
 <!-- SOCIAL -->
-<section class="social" id="social">
-  <div class="social-inner">
-
 <section class="social" id="social">
   <div class="social-inner">
     <div>
@@ -1087,7 +1196,7 @@ fus.forEach(el=>io.observe(el));
 
 /* ── Nav highlight ────────────────────────────────── */
 const navAs=document.querySelectorAll('.nav-c a');
-const sids=['features','how','specs','pricing','social'];
+const sids=['features','how','specs','streak','pricing','social'];
 const sels=sids.map(id=>document.getElementById(id));
 window.addEventListener('scroll',()=>{
   const y=window.scrollY+100;
@@ -1123,6 +1232,119 @@ window.addEventListener('scroll',()=>{
     })
     .catch(function(){ /* spots.json missing — defaults stay */ });
 })();
+</script>
+<script>
+/* Honesty Streak — day-grid animation. Deliberately NOT a module script and
+   NOT dependent on Firebase loading: the animation must never break just
+   because the network or an ad-blocker stops the Firestore import below. */
+(function(){
+  var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var days = Array.prototype.slice.call(document.querySelectorAll('#streakGrid .streak-day'));
+  function playLoop(){
+    days.forEach(function(d){ d.classList.remove('win','loss'); d.querySelector('.sd-m').style.opacity=0; d.querySelector('.sd-f').style.opacity=0; });
+    days.forEach(function(d,i){
+      setTimeout(function(){
+        var state = d.getAttribute('data-state');
+        d.classList.add(state);
+        d.querySelector('.sd-f').style.opacity = 1;
+        d.querySelector('.sd-m').style.opacity = 1;
+      }, i*220);
+    });
+  }
+  if(!reduced){ playLoop(); setInterval(playLoop, days.length*220 + 2600); }
+  else{ days.forEach(function(d){ d.classList.add(d.getAttribute('data-state')); d.querySelector('.sd-f').style.opacity=1; d.querySelector('.sd-m').style.opacity=1; }); }
+})();
+</script>
+
+<script type="module">
+/* Honesty Streak — entry submission.
+   Paste the SAME Firebase config already used in TradeJ.html — this is the
+   public web config (not a secret) and matches the trial_registrations
+   pattern already used elsewhere in the app. Writes to a new collection,
+   honesty_streak_entries — add a Firestore rule allowing create-only,
+   public write on that collection (no read/update/delete). */
+const form   = document.getElementById('streakEntryForm');
+const btn    = document.getElementById('streakSubmitBtn');
+const status = document.getElementById('streakStatus');
+
+function showStatus(msg, kind){
+  status.textContent = msg;
+  status.className = 'sf-status show ' + kind;
+}
+
+let db = null, collection, addDoc, serverTimestamp;
+
+try {
+  const appMod = await import('https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js');
+  const fsMod  = await import('https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js');
+  ({ collection, addDoc, serverTimestamp } = fsMod);
+
+  const firebaseConfig = {
+    apiKey:            "AIzaSyAirViIqmLqt8u1ysgWe-HVItohnnWS4x0",
+    authDomain:        "tradej-854a1.firebaseapp.com",
+    projectId:         "tradej-854a1",
+    storageBucket:     "tradej-854a1.firebasestorage.app",
+    messagingSenderId: "241226775232",
+    appId:             "1:241226775232:web:4cdbb0d59e5cd7d6178b25"
+  };
+
+  const app = appMod.initializeApp(firebaseConfig);
+  db = fsMod.getFirestore(app);
+} catch (err) {
+  console.error('Firebase failed to load:', err);
+  // Form still renders normally; submit will show a clear error instead of hanging.
+}
+
+form.addEventListener('submit', async (e) => {
+  e.preventDefault();
+  status.className = 'sf-status';
+
+  if (!db) {
+    showStatus('Entries are temporarily unavailable — refresh and try again in a moment.', 'err');
+    return;
+  }
+
+  const name       = document.getElementById('se-name').value.trim();
+  const email      = document.getElementById('se-email').value.trim();
+  const platform   = document.getElementById('se-platform').value;
+  const postUrl    = document.getElementById('se-posturl').value.trim();
+  const tradeCountRaw = document.getElementById('se-tradecount').value.trim();
+  const note       = document.getElementById('se-note').value.trim();
+
+  if (!name || !email || !platform || !postUrl || !tradeCountRaw) {
+    showStatus('Fill in every required field before submitting.', 'err');
+    return;
+  }
+  try { new URL(postUrl); } catch {
+    showStatus('That link doesn\u2019t look like a valid URL.', 'err');
+    return;
+  }
+  const tradeCount = parseInt(tradeCountRaw, 10);
+  if (!Number.isInteger(tradeCount) || tradeCount < 1) {
+    showStatus('Trade count should be a whole number, 1 or higher.', 'err');
+    return;
+  }
+
+  btn.disabled = true;
+  btn.textContent = 'Submitting…';
+
+  try {
+    await addDoc(collection(db, 'honesty_streak_entries'), {
+      name, email, platform, postUrl, tradeCount, note,
+      submittedAt: serverTimestamp(),
+      verified: false,
+      winner: null,
+    });
+    form.reset();
+    showStatus('Entry received. We\u2019ll reach out by email if you place.', 'ok');
+  } catch (err) {
+    console.error(err);
+    showStatus('Something went wrong submitting that — try again in a moment.', 'err');
+  } finally {
+    btn.disabled = false;
+    btn.textContent = 'Submit entry';
+  }
+});
 </script>
 </body>
 </html>

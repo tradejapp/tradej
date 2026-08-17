@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Honesty Streak — Judging</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#070B14; --bg2:#0C1220; --bg3:#111827; --panel:#141E30;
+  --border:rgba(255,255,255,0.08); --teal:#00D4A8; --teal-d:rgba(0,212,168,0.12);
+  --red:#F87171; --red-d:rgba(248,113,113,0.12);
+  --gold:#FBBF24;
+  --text:#E8F0FE; --text2:#8BA3C7; --text3:#4A6080;
+  --mono:'JetBrains Mono',monospace; --sans:'Space Grotesk',sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{background:var(--bg);color:var(--text);font-family:var(--sans);line-height:1.55;min-height:100vh;}
+a{color:var(--teal);}
+
+/* ---- sign-in gate ---- */
+#gate{max-width:380px;margin:14vh auto 0;padding:0 24px;text-align:center;}
+#gate h1{font-size:1.4rem;margin-bottom:8px;}
+#gate p{color:var(--text2);font-size:.9rem;margin-bottom:28px;}
+#gate input{width:100%;background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:11px 13px;color:var(--text);font-family:var(--sans);font-size:.9rem;outline:none;margin-bottom:12px;}
+#gate input:focus{border-color:var(--teal);}
+#gate button{width:100%;background:linear-gradient(135deg,#00D4A8,#22C55E);color:#000;border:none;border-radius:8px;padding:12px;font-weight:700;font-size:.9rem;cursor:pointer;}
+#gate button:disabled{opacity:.5;cursor:not-allowed;}
+#gate .err{color:var(--red);font-size:.82rem;margin-top:14px;display:none;}
+#gate .err.show{display:block;}
+#gate .hint{font-family:var(--mono);font-size:.72rem;color:var(--text3);margin-top:20px;line-height:1.6;}
+
+/* ---- dashboard ---- */
+#dash{display:none;max-width:1160px;margin:0 auto;padding:36px 24px 80px;}
+header{display:flex;align-items:center;justify-content:space-between;margin-bottom:28px;flex-wrap:wrap;gap:12px;}
+header h1{font-size:1.3rem;}
+header .who{font-family:var(--mono);font-size:.76rem;color:var(--text3);}
+.signout{font-family:var(--mono);font-size:.76rem;color:var(--text2);background:var(--bg3);border:1px solid var(--border);border-radius:6px;padding:6px 12px;cursor:pointer;}
+
+.toolbar{display:flex;gap:10px;align-items:center;margin-bottom:18px;flex-wrap:wrap;}
+.toolbar button{font-family:var(--mono);font-size:.76rem;color:var(--text2);background:var(--bg3);border:1px solid var(--border);border-radius:6px;padding:7px 13px;cursor:pointer;}
+.toolbar button.active{color:var(--teal);border-color:rgba(0,212,168,.35);background:var(--teal-d);}
+.toolbar .count{font-family:var(--mono);font-size:.76rem;color:var(--text3);margin-left:auto;}
+
+.empty{color:var(--text3);font-size:.9rem;text-align:center;padding:60px 0;}
+
+.entry{background:var(--panel);border:1px solid var(--border);border-radius:12px;padding:20px 22px;margin-bottom:12px;}
+.entry-top{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;flex-wrap:wrap;margin-bottom:14px;}
+.entry-name{font-weight:700;font-size:1rem;}
+.entry-email{font-family:var(--mono);font-size:.72rem;color:var(--text3);margin-top:2px;}
+.entry-meta{display:flex;gap:14px;flex-wrap:wrap;font-family:var(--mono);font-size:.76rem;color:var(--text2);}
+.entry-meta b{color:var(--text);}
+.entry-platform{text-transform:uppercase;letter-spacing:.05em;color:var(--teal);background:var(--teal-d);border:1px solid rgba(0,212,168,.2);border-radius:4px;padding:2px 8px;font-size:.68rem;}
+.entry-link{display:inline-block;margin-top:8px;font-size:.85rem;word-break:break-all;}
+.entry-note{margin-top:10px;font-size:.84rem;color:var(--text2);background:var(--bg3);border-radius:8px;padding:10px 12px;}
+.entry-controls{display:flex;gap:16px;align-items:center;margin-top:16px;padding-top:16px;border-top:1px solid var(--border);flex-wrap:wrap;}
+.ctrl-label{display:flex;align-items:center;gap:8px;font-size:.82rem;color:var(--text2);}
+.ctrl-label input[type=checkbox]{width:16px;height:16px;accent-color:var(--teal);}
+.ctrl-label select{background:var(--bg3);border:1px solid var(--border);border-radius:6px;color:var(--text);font-family:var(--sans);font-size:.82rem;padding:6px 10px;}
+.save-state{font-family:var(--mono);font-size:.7rem;color:var(--text3);margin-left:auto;}
+.save-state.saving{color:var(--gold);}
+.save-state.saved{color:var(--teal);}
+.entry.is-winner{border-color:rgba(251,191,36,.4);box-shadow:0 0 0 1px rgba(251,191,36,.15);}
+.entry.is-verified .entry-name::after{content:' ✓';color:var(--teal);}
+</style>
+</head>
+<body>
+
+<div id="gate">
+  <h1>Honesty Streak — Judging</h1>
+  <p>Sign in with your TradeJ admin account.</p>
+  <input type="email" id="gEmail" placeholder="Email" autocomplete="username">
+  <input type="password" id="gPass" placeholder="Password" autocomplete="current-password">
+  <button id="gBtn">Sign in</button>
+  <p class="err" id="gErr"></p>
+  <p class="hint">Access is enforced by Firestore rules, not this page — only the admin<br>account(s) allow-listed in your security rules can read entries here.</p>
+</div>
+
+<div id="dash">
+  <header>
+    <div>
+      <h1>Honesty Streak — Judging</h1>
+      <div class="who" id="whoami"></div>
+    </div>
+    <button class="signout" id="signOutBtn">Sign out</button>
+  </header>
+
+  <div class="toolbar">
+    <button data-sort="trades" class="active">Sort: trade count</button>
+    <button data-sort="date">Sort: newest</button>
+    <span class="count" id="entryCount"></span>
+  </div>
+
+  <div id="list"></div>
+  <div class="empty" id="emptyState" style="display:none;">No entries yet.</div>
+</div>
+
+<script type="module">
+  // ============================================================
+  // Paste the SAME Firebase config already used in TradeJ.html.
+  // ============================================================
+  import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js';
+  import {
+    getAuth, signInWithEmailAndPassword, onAuthStateChanged, signOut
+  } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js';
+  import {
+    getFirestore, collection, onSnapshot, doc, updateDoc, query, orderBy
+  } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js';
+
+  const firebaseConfig = {
+    apiKey:            "AIzaSyAirViIqmLqt8u1ysgWe-HVItohnnWS4x0",
+    authDomain:        "tradej-854a1.firebaseapp.com",
+    projectId:         "tradej-854a1",
+    storageBucket:     "tradej-854a1.firebasestorage.app",
+    messagingSenderId: "241226775232",
+    appId:             "1:241226775232:web:4cdbb0d59e5cd7d6178b25"
+  };
+
+  const app  = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+  const db   = getFirestore(app);
+
+  const gate    = document.getElementById('gate');
+  const dash    = document.getElementById('dash');
+  const gEmail  = document.getElementById('gEmail');
+  const gPass   = document.getElementById('gPass');
+  const gBtn    = document.getElementById('gBtn');
+  const gErr    = document.getElementById('gErr');
+  const whoami  = document.getElementById('whoami');
+  const list    = document.getElementById('list');
+  const emptyState = document.getElementById('emptyState');
+  const entryCount = document.getElementById('entryCount');
+
+  function showErr(msg){ gErr.textContent = msg; gErr.classList.add('show'); }
+
+  gBtn.addEventListener('click', async () => {
+    gErr.classList.remove('show');
+    gBtn.disabled = true; gBtn.textContent = 'Signing in…';
+    try {
+      await signInWithEmailAndPassword(auth, gEmail.value.trim(), gPass.value);
+    } catch (err) {
+      showErr('Sign-in failed — check the email and password.');
+    } finally {
+      gBtn.disabled = false; gBtn.textContent = 'Sign in';
+    }
+  });
+
+  document.getElementById('signOutBtn').addEventListener('click', () => signOut(auth));
+
+  let unsubscribe = null;
+  let entries = [];
+  let sortMode = 'trades';
+
+  onAuthStateChanged(auth, (user) => {
+    if (unsubscribe) { unsubscribe(); unsubscribe = null; }
+    if (!user) {
+      gate.style.display = 'block';
+      dash.style.display = 'none';
+      return;
+    }
+    gate.style.display = 'none';
+    dash.style.display = 'block';
+    whoami.textContent = 'Signed in as ' + user.email;
+
+    const q = query(collection(db, 'honesty_streak_entries'), orderBy('submittedAt', 'desc'));
+    unsubscribe = onSnapshot(q,
+      (snap) => {
+        entries = snap.docs.map(d => ({ id: d.id, ...d.data() }));
+        render();
+      },
+      (err) => {
+        // Most likely cause: this account isn't allow-listed in the
+        // Firestore security rules for reading this collection.
+        list.innerHTML = '';
+        emptyState.style.display = 'block';
+        emptyState.textContent = 'Could not load entries — this account may not have judging access. (' + err.code + ')';
+      }
+    );
+  });
+
+  document.querySelectorAll('.toolbar button[data-sort]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      sortMode = btn.dataset.sort;
+      document.querySelectorAll('.toolbar button[data-sort]').forEach(b => b.classList.toggle('active', b === btn));
+      render();
+    });
+  });
+
+  function render(){
+    const sorted = [...entries].sort((a, b) => {
+      if (sortMode === 'trades') return (b.tradeCount||0) - (a.tradeCount||0);
+      const at = a.submittedAt?.toMillis ? a.submittedAt.toMillis() : 0;
+      const bt = b.submittedAt?.toMillis ? b.submittedAt.toMillis() : 0;
+      return bt - at;
+    });
+
+    entryCount.textContent = sorted.length + ' entr' + (sorted.length === 1 ? 'y' : 'ies');
+    emptyState.style.display = sorted.length ? 'none' : 'block';
+    if (!sorted.length) emptyState.textContent = 'No entries yet.';
+
+    list.innerHTML = sorted.map(e => {
+      const submitted = e.submittedAt?.toDate ? e.submittedAt.toDate().toLocaleString() : '—';
+      const platformLabel = ({forex_factory:'Forex Factory', facebook:'Facebook', x:'X', tiktok:'TikTok'})[e.platform] || e.platform;
+      return `
+        <div class="entry ${e.verified ? 'is-verified' : ''} ${e.winner ? 'is-winner' : ''}" data-id="${e.id}">
+          <div class="entry-top">
+            <div>
+              <div class="entry-name">${escapeHtml(e.name || '(no name)')}</div>
+              <div class="entry-email">${escapeHtml(e.email || '')}</div>
+            </div>
+            <div class="entry-meta">
+              <span class="entry-platform">${escapeHtml(platformLabel)}</span>
+              <span><b>${e.tradeCount ?? '—'}</b> trades</span>
+              <span>${submitted}</span>
+            </div>
+          </div>
+          <a class="entry-link" href="${escapeAttr(e.postUrl)}" target="_blank" rel="noopener">${escapeHtml(e.postUrl || '')}</a>
+          ${e.note ? `<div class="entry-note">${escapeHtml(e.note)}</div>` : ''}
+          <div class="entry-controls">
+            <label class="ctrl-label">
+              <input type="checkbox" class="verify-cb" ${e.verified ? 'checked' : ''}>
+              Verified 7-day streak
+            </label>
+            <label class="ctrl-label">
+              Winner:
+              <select class="winner-sel">
+                <option value="" ${!e.winner ? 'selected':''}>—</option>
+                <option value="1st" ${e.winner==='1st'?'selected':''}>1st place</option>
+                <option value="2nd" ${e.winner==='2nd'?'selected':''}>2nd place</option>
+                <option value="3rd" ${e.winner==='3rd'?'selected':''}>3rd place</option>
+              </select>
+            </label>
+            <span class="save-state"></span>
+          </div>
+        </div>`;
+    }).join('');
+
+    list.querySelectorAll('.entry').forEach(card => {
+      const id = card.dataset.id;
+      const cb = card.querySelector('.verify-cb');
+      const sel = card.querySelector('.winner-sel');
+      const state = card.querySelector('.save-state');
+
+      async function save(){
+        state.textContent = 'Saving…'; state.className = 'save-state saving';
+        try {
+          await updateDoc(doc(db, 'honesty_streak_entries', id), {
+            verified: cb.checked,
+            winner: sel.value || null,
+          });
+          state.textContent = 'Saved'; state.className = 'save-state saved';
+        } catch (err) {
+          state.textContent = 'Save failed'; state.className = 'save-state';
+        }
+      }
+      cb.addEventListener('change', save);
+      sel.addEventListener('change', save);
+    });
+  }
+
+  function escapeHtml(s){ return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+  function escapeAttr(s){ return escapeHtml(s); }
+</script>
+</body>
+</html>
